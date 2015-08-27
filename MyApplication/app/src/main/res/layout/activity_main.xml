@@ -12,8 +12,9 @@
    <com.example.supermanmwg.simplecustomview.custom.CustomTitleView
        android:layout_height="wrap_content"
        android:layout_width="wrap_content"
+       android:padding="5dp"
        supermanmwg:titleColor="#ffc228"
-       supermanmwg:titleSize="100sp"
+       supermanmwg:titleSize="16sp"
        supermanmwg:titleText="3721"/>
 
 

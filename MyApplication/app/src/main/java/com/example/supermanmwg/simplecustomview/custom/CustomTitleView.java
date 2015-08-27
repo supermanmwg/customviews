@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -61,6 +62,35 @@ public class CustomTitleView extends View {
         mPaint.setTextSize(mTitleSize);
         mBound = new Rect();
         mPaint.getTextBounds(mTitleText, 0, mTitleText.length(), mBound);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.d("haha", "w = " + String.format("%x", widthMeasureSpec) + ", h = " + String.format("%x", heightMeasureSpec));
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int width, height;
+
+        if(MeasureSpec.EXACTLY == widthMode) {
+            width = widthSize;
+        } else {
+            float textWidth = mBound.width();
+            int desired = (int) (getPaddingLeft() + textWidth + getPaddingRight());
+            width = desired;
+        }
+
+        if(MeasureSpec.EXACTLY == heightMode) {
+            height = heightSize;
+        } else {
+            float textHeight = mBound.height();
+            int desired = (int) (getPaddingTop() + textHeight + getPaddingBottom());
+            height = desired;
+        }
+
+        setMeasuredDimension(width, height);
     }
 
     @Override
