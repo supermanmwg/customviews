@@ -100,6 +100,7 @@ public class CustomTitleView extends View {
         canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);
 
         mPaint.setColor(mTitleColor);
+        //终于懂了为什么是　＋　而不是减　，因为这个是指的这个字体的坐标（x,y）,不是长和宽的起始位置
         canvas.drawText(mTitleText, getWidth()/2 - mBound.width()/2, getHeight()/2 + mBound.height()/2, mPaint);
     }
 }
